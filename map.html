@@ -1,0 +1,213 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="https://npmcdn.com/parse@1.10.0/dist/parse.min.js"></script>
+
+    <!--<script type="text/javascript" src="js/main.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" href="css/style.css">    
+    
+        <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Custom JavaScript -->
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- Map API script -->
+      <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcoJ6dchXZAmR3y0r87Gt2p9QPX669xsU&libraries=places&callback=initMap"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+    <title>Berry Me!</title>
+  </head>
+  <body>
+
+    <section id="navBar">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-light menu_bar">
+        <a class="navbar-brand logo" href="index.html">
+          <img src="img/logo.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li id="home" class="nav-item">
+              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li id="documentation" class="nav-item">
+              <a class="nav-link" href="#">Documentation</a>
+            </li>
+            <li id="yourLoc" class="nav-item">
+              <a id="locateMeBtn" class="nav-link" href="#">Your Location</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="findBerry" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Find Berries
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a onclick="getBerry('all')" id="showAll" class="dropdown-item" href="#"><img class="berry_icon" src="img/berry.png" alt="All">All</a>
+                <a onclick="getBerry('Strawberry')" id="showStraw" class="dropdown-item" href="#"><img class="berry_icon" src="img/strawberry.png" alt="Strawberry">Strawberry</a>
+                <a onclick="getBerry('RaspBerry')" id="showRasp" class="dropdown-item" href="#"><img class="berry_icon" src="img/raspBerry.png" alt="Raspberry">RaspBerry</a>
+                <a onclick="getBerry('Blackberry')" id="showBlack" class="dropdown-item" href="#"><img class="berry_icon" src="img/blackberry.png" alt="Blackberry">Blackberry</a>
+                <a onclick="getBerry('Blueberry')" id="showBlue" class="dropdown-item" href="#"><img class="berry_icon" src="img/blueberry.png" alt="Blueberry">Blueberry</a>
+                <a onclick="getBerry('Lingonberry')" id="showLingon" class="dropdown-item" href="#"><img class="berry_icon" src="img/lingonberry.png" alt="Lingonberry">Lingonberry</a>
+                <a onclick="getBerry('Gooseberry')" id="showGoose" class="dropdown-item" href="#"><img class="berry_icon" src="img/gooseberry.png" alt="Gooseberry">Gooseberry</a>
+                <a onclick="getBerry('Cloudberry')" id="showCloud" class="dropdown-item" href="#"><img class="berry_icon" src="img/cloudberry.png" alt="Cloudberry">Cloudberry</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="addberry.html" target="_blank">Add Berry</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#signInModal">Sign In</a>
+            </li> -->
+          </ul>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input id="searchArea" class="form-control mr-sm-2" type="search" placeholder="Search Berry">
+            <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
+        </div>
+      </nav>
+    </section>
+
+    <section class="sign_up">
+      <!-- Modal -->
+      <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div id="signUpBox" class="row login_box">
+              <div class="left-box col-md-6">
+                <h1>Create Account</h1>
+                <input type="text" name="username" placeholder="Username"/>
+                <input type="text" name="email" placeholder="Email"/>
+                <input type="password" name="password" placeholder="Password"/>
+                <input type="password" name="password2" placeholder="Retype password"/>
+                <input type="submit" name="signup-button" value="Sign Up"/>
+
+                <div class="">Already have an account? Go to <span><a href="#" data-toggle="modal" data-target="#signInModal"> Sign In</a></span></div>
+              </div>
+
+              <div id="right" class="right-box col-md-6">
+                <span class="signinwith">Sign in with<br>Social Network</span>
+                <button class="facebook">Log in with Facebook</button>
+                <button class="google">Log in with Google+</button>
+              </div>
+              <div class="or">OR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sign_in">
+      <!-- Modal -->
+      <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div id="loginBox" class="login_box">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="left-box">
+                <h1>Sign In</h1>
+                <input type="text" name="username" placeholder="Username"/>
+                <input type="password" name="password" placeholder="Password"/>
+                <input type="submit" name="signin-button" value="Sign In"/>
+                <p>Don't have an account? Go to <span><a href="#" data-toggle="modal" data-target="#signUpModal">Sign Up</a></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="map_area">
+      <div id="map"></div>
+    </section>
+
+    <script type="text/javascript">
+      //for text autocomplete
+     var placeSearch, autocomplete;
+     var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+     };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        for (var component in componentForm) {
+          document.getElementById(component).value = '';
+          document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+          }
+        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
